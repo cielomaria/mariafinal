@@ -55,7 +55,7 @@ export default function AddClientModal() {
           >
             <div className='d-flex align-items-center'>
               <FaList className='icon' />
-              <div>New Project</div>
+              <div>Nuevo Proyecto</div>
             </div>
           </button>
 
@@ -69,7 +69,7 @@ export default function AddClientModal() {
               <div className='modal-content'>
                 <div className='modal-header'>
                   <h5 className='modal-title' id='addProjectModalLabel'>
-                    New Project
+                    New Proyecto
                   </h5>
                   <button
                     type='button'
@@ -81,7 +81,7 @@ export default function AddClientModal() {
                 <div className='modal-body'>
                   <form onSubmit={onSubmit}>
                     <div className='mb-3'>
-                      <label className='form-label'>Name</label>
+                      <label className='form-label'>Nombre</label>
                       <input
                         type='text'
                         className='form-control'
@@ -91,7 +91,7 @@ export default function AddClientModal() {
                       />
                     </div>
                     <div className='mb-3'>
-                      <label className='form-label'>Description</label>
+                      <label className='form-label'>Descripcion</label>
                       <textarea
                         className='form-control'
                         id='description'
@@ -100,28 +100,28 @@ export default function AddClientModal() {
                       ></textarea>
                     </div>
                     <div className='mb-3'>
-                      <label className='form-label'>Status</label>
+                      <label className='form-label'>Estado</label>
                       <select
                         id='status'
                         className='form-select'
                         value={status}
                         onChange={(e) => setStatus(e.target.value)}
                       >
-                        <option value='new'>Not Started</option>
-                        <option value='progress'>In Progress</option>
+                        <option value='new'>Not started</option>
+                        <option value='progress'>In progress</option>
                         <option value='completed'>Completed</option>
                       </select>
                     </div>
 
                     <div className='mb-3'>
-                      <label className='form-label'>Client</label>
+                      <label className='form-label'>Cliente</label>
                       <select
                         id='clientId'
                         className='form-select'
                         value={clientId}
                         onChange={(e) => setClientId(e.target.value)}
                       >
-                        <option value=''>Select Client</option>
+                        <option value=''>Seleccione Cliente</option>
                         {data.clients.map((client) => (
                           <option key={client.id} value={client.id}>
                             {client.name}
@@ -135,7 +135,7 @@ export default function AddClientModal() {
                       data-bs-dismiss='modal'
                       className='btn btn-primary'
                     >
-                      Submit
+                      Crear
                     </button>
                   </form>
                 </div>

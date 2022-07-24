@@ -11,6 +11,7 @@ export default function Clients() {
 
   return (
     <>
+    <p className='fw-bolder fs-6 text'> CLIENTES</p>
       {!loading && !error && (
         <table className='table table-hover mt-3'>
           <thead>

@@ -65,9 +65,9 @@ export default function EditProjectForm({ project }) {
             value={status}
             onChange={(e) => setStatus(e.target.value)}
           >
-            <option value="new">Not Started</option>
-            <option value="progress">In Progress</option>
-            <option value="completed">Completed</option>
+            <option value="new">No Empezado</option>
+            <option value="progress">En progreso</option>
+            <option value="completed">Completado</option>
           </select>
         </div>
 

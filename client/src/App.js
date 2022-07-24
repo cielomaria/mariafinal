@@ -3,6 +3,7 @@ import Header from './components/Header';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 import Home from './pages/Home';
 import Project from './pages/Project';
+import Programmer from './pages/Programmer';
 import NotFound from './pages/NotFound';
 
 const cache = new InMemoryCache({
@@ -15,6 +16,11 @@ const cache = new InMemoryCache({
           },
         },
         projects: {
+          merge(existing, incoming) {
+            return incoming;
+          },
+        },
+        programmers: {
           merge(existing, incoming) {
             return incoming;
           },
@@ -40,6 +46,7 @@ function App() {
               <Route path='/' element={<Home />} />
               <Route path='/projects/:id' element={<Project />} />
               <Route path='*' element={<NotFound />} />
+              <Route path='/programmers/:id' element={<Programmer />} />
             </Routes>
           </div>
         </Router>

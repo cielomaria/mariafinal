@@ -1,5 +1,6 @@
 const Project = require('../models/Project');
 const Client = require('../models/Client');
+const Programmer = require('../models/Programmer');
 
 const {
   GraphQLObjectType,
@@ -10,6 +11,24 @@ const {
   GraphQLNonNull,
   GraphQLEnumType,
 } = require('graphql');
+
+//Programmer Type
+const ProgrammerType = new GraphQLObjectType({
+  name: 'Programmer',
+  fields: () => ({
+    id: { type: GraphQLID },
+    name: { type: GraphQLString },
+    email: { type: GraphQLString },
+    cargo: { type: GraphQLString },
+    project: {
+      type: ProjectType,
+      resolve(parent, args) {
+        return Project.findById(parent.projectId);
+      },
+    },
+  }),
+});
+
 
 // Project Type
 const ProjectType = new GraphQLObjectType({
@@ -42,6 +61,19 @@ const ClientType = new GraphQLObjectType({
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
+    programmers: {
+      type: new GraphQLList(ProgrammerType),
+      resolve(parent, args) {
+        return Programmer.find();
+      },
+    },
+    programmer: {
+      type: ProgrammerType,
+      args: { id: { type: GraphQLID } },
+      resolve(parent, args) {
+        return Programmer.findById(args.id);
+      },
+    },
     projects: {
       type: new GraphQLList(ProjectType),
       resolve(parent, args) {
@@ -175,6 +207,60 @@ const mutation = new GraphQLObjectType({
               name: args.name,
               description: args.description,
               status: args.status,
+            },
+          },
+          { new: true }
+        );
+      },
+    },
+    // PROGRAMMER 
+    // add programmer
+    addProgrammer: {
+      type: ProgrammerType,
+      args: {
+        name: { type: GraphQLNonNull(GraphQLString) },
+        email: { type: GraphQLNonNull(GraphQLString) },
+        cargo: { type: GraphQLNonNull(GraphQLString) },
+        projectId: { type: GraphQLNonNull(GraphQLID) },
+      },
+      resolve(parent, args) {
+        const programmer = new Programmer({
+          name: args.name,
+          email: args.email,
+          cargo: args.cargo,
+          projectId: args.projectId,
+        });
+
+        return programmer.save();
+      },
+    },
+    // Delete a programmer
+    deleteProgrammer: {
+      type: ProgrammerType,
+      args: {
+        id: { type: GraphQLNonNull(GraphQLID) },
+      },
+      resolve(parent, args) {
+        return Programmer.findByIdAndRemove(args.id);
+      },
+    },
+    // Update a programmer
+    updateProgrammer: {
+      type: ProgrammerType,
+      args: {
+        id: { type: GraphQLNonNull(GraphQLID) },
+        name: { type: GraphQLString },
+        email: { type: GraphQLString },
+        cargo: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        return Programmer.findByIdAndUpdate(
+          args.id,
+          {
+            $set: {
+              name: args.name,
+              email: args.email,
+              cargo: args.cargo,
             },
           },
           { new: true }

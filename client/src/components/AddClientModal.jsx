@@ -25,7 +25,7 @@ export default function AddClientModal() {
     e.preventDefault();
 
     if (name === '' || email === '' || phone === '') {
-      return alert('Please fill in all fields');
+      return alert('Por favor llene todos los campos');
     }
 
     addClient(name, email, phone);
@@ -45,7 +45,7 @@ export default function AddClientModal() {
       >
         <div className='d-flex align-items-center'>
           <FaUser className='icon' />
-          <div>Add Client</div>
+          <div>Añadir cliente</div>
         </div>
       </button>
 
@@ -59,7 +59,7 @@ export default function AddClientModal() {
           <div className='modal-content'>
             <div className='modal-header'>
               <h5 className='modal-title' id='addClientModalLabel'>
-                Add Client
+                Añadir cliente
               </h5>
               <button
                 type='button'
@@ -71,7 +71,7 @@ export default function AddClientModal() {
             <div className='modal-body'>
               <form onSubmit={onSubmit}>
                 <div className='mb-3'>
-                  <label className='form-label'>Name</label>
+                  <label className='form-label'>Nombre</label>
                   <input
                     type='text'
                     className='form-control'
@@ -81,7 +81,7 @@ export default function AddClientModal() {
                   />
                 </div>
                 <div className='mb-3'>
-                  <label className='form-label'>Email</label>
+                  <label className='form-label'>Correo</label>
                   <input
                     type='email'
                     className='form-control'
@@ -91,7 +91,7 @@ export default function AddClientModal() {
                   />
                 </div>
                 <div className='mb-3'>
-                  <label className='form-label'>Phone</label>
+                  <label className='form-label'>Telefono</label>
                   <input
                     type='text'
                     className='form-control'
@@ -106,7 +106,7 @@ export default function AddClientModal() {
                   data-bs-dismiss='modal'
                   className='btn btn-secondary'
                 >
-                  Submit
+                  Crear
                 </button>
               </form>
             </div>
